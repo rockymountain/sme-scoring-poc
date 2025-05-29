@@ -2,8 +2,18 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
 from model.scoring_engine import compute_score
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# 👇 Thêm đoạn sau để bật CORS cho frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Cho phép frontend gọi API
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class SMEInput(BaseModel):
     company_name: str
