@@ -32,7 +32,7 @@ def score_sme(data):
     # Weighted sum
     total_score = sum(components[k] * weights.get(k, 0) for k in components)
 
-    # Risk level logic
+    # Risk level logic (mới)
     if total_score >= 90:
         risk_level = "Thấp"
     elif total_score >= 80:
@@ -42,14 +42,22 @@ def score_sme(data):
     else:
         risk_level = "Rất Cao"
 
-    # Key factors explanation
-    key_factors = [
-        f"{k.replace('_', ' ').capitalize()}: {components[k]:.1f} điểm (trọng số {weights.get(k, 0):.2f})"
-        for k in components
-    ]
+    # Explainable AI: phân tích điểm mạnh/yếu
+    positive_factors = []
+    negative_factors = []
+    for k in components:
+        point = components[k]
+        label = k.replace('_', ' ').capitalize()
+        detail = f"{label}: {point:.1f} điểm (trọng số {weights.get(k, 0):.2f})"
+        if point > 50: # Đánh giá theo điểm
+            positive_factors.append(detail)
+        else:
+            negative_factors.append(detail)
 
     return {
         "score": round(total_score, 1),
         "risk_level": risk_level,
-        "key_factors": key_factors
+        "positive_factors": positive_factors,
+        "negative_factors": negative_factors,
+        "key_factors": positive_factors + negative_factors
     }

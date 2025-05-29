@@ -153,11 +153,21 @@ export default function SMEForm() {
           <p className="text-lg font-bold">✅ Kết quả đánh giá tín dụng:</p>
           <p><strong>Điểm tín dụng:</strong> {result.score}</p>
           <p><strong>Phân loại rủi ro:</strong> {result.risk_level}</p>
-          <div>
-            <strong>Yếu tố ảnh hưởng:</strong>
-            <ul className="list-disc pl-5">
-              {result.key_factors.map((f, i) => (
-                <li key={i}>{f}</li>
+
+          <div className="mt-4">
+            <p className="font-semibold text-green-700">✅ Điểm mạnh:</p>
+            <ul className="list-disc pl-6 text-green-700">
+              {result.positive_factors?.map((f, i) => (
+                <li key={`pos-${i}`}>{f}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-4">
+            <p className="font-semibold text-yellow-700">⚠️ Điểm yếu:</p>
+            <ul className="list-disc pl-6 text-yellow-700">
+              {result.negative_factors?.map((f, i) => (
+                <li key={`neg-${i}`}>{f}</li>
               ))}
             </ul>
           </div>

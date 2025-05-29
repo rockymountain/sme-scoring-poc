@@ -34,14 +34,23 @@ class SMEResult(BaseModel):
     company_name: str
     score: float
     risk_level: str
-    key_factors: List[str]
+    #key_factors: List[str]
+    positive_factors: List[str]
+    negative_factors: List[str]
 
 @app.post("/score", response_model=SMEResult)
 def score_sme(data: SMEInput):
     result = core_score(data.dict())
-    return SMEResult(
-        company_name=data.company_name,
-        score=result["score"],
-        risk_level=result["risk_level"],
-        key_factors=result["key_factors"]
-    )
+#    return SMEResult(
+#        company_name=data.company_name,
+#        score=result["score"],
+#        risk_level=result["risk_level"],
+#        key_factors=result["key_factors"]
+#    )
+    return {
+        "company_name": data.company_name,
+        "score": result["score"],
+        "risk_level": result["risk_level"],
+        "positive_factors": result["positive_factors"],
+        "negative_factors": result["negative_factors"]
+    }
