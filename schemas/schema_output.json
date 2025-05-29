@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SME Credit Scoring Output Schema",
+  "type": "object",
+  "properties": {
+    "company_name": { "type": "string" },
+    "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "risk_level": {
+      "type": "string",
+      "enum": ["Thấp", "Trung bình", "Cao"]
+    },
+    "key_factors": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["company_name", "score", "risk_level", "key_factors"]
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SME Credit Scoring Input Schema",
+  "type": "object",
+  "properties": {
+    "company_name": { "type": "string" },
+    "tax_id": { "type": "string", "pattern": "^\\d{10,13}$" },
+    "industry": { "type": "string" },
+    "founded_year": { "type": "integer", "minimum": 1900 },
+    "revenue": { "type": "number", "minimum": 0 },
+    "net_profit": { "type": "number" },
+    "total_assets": { "type": "number", "minimum": 0 },
+    "charter_capital": { "type": "number", "minimum": 0 },
+    "collateral": {
+      "type": "string",
+      "enum": ["Bất động sản", "Xe tải", "Không có"]
+    },
+    "loan_purpose": {
+      "type": "string",
+      "enum": ["Lưu động", "Đầu tư máy móc", "Mở rộng mặt bằng", "Khác"]
+    },
+    "years_borrowed": { "type": "integer", "minimum": 0 },
+    "repayment_history": {
+      "type": "string",
+      "enum": ["Tốt", "Trễ hạn", "Nợ xấu"]
+    },
+    "audited_financials": { "type": "boolean" }
+  },
+  "required": [
+    "company_name",
+    "tax_id",
+    "industry",
+    "founded_year",
+    "revenue",
+    "net_profit",
+    "total_assets",
+    "charter_capital",
+    "collateral",
+    "loan_purpose",
+    "years_borrowed",
+    "repayment_history",
+    "audited_financials"
+  ]
+}
