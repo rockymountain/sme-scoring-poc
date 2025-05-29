@@ -1,46 +1,63 @@
-# Python __pycache__ và các file biên dịch
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.pyo
+*$py.class
 
-# Thư mục môi trường ảo (tuỳ bạn đặt tên gì)
-venv/
-.env/
-.env.bak/
+# Cython debug symbols
+cython_debug/
+
+# Virtual environment
 .venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Log và tệp debug
-*.log
-*.pid
-*.sqlite3
-
-# Tệp cấu hình máy local
-*.db
-*.db-journal
-*.sqlite
-
-# VSCode / IDE settings
+# IDE/editor folders
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
 
-# Uvicorn logs (nếu bạn ghi log ra file)
-uvicorn*.log
-
-# Jupyter notebook checkpoints (nếu có dùng)
-.ipynb_checkpoints/
-
-# Byte-compiled / optimized / DLL files
-*.so
-*.dll
-*.dylib
-
-# Các file từ hệ điều hành
+# OS generated files
 .DS_Store
 Thumbs.db
 
-# pyproject.toml / poetry (nếu bạn dùng)
-poetry.lock
+# Pydantic cache (v2+)
+.pydantic/
 
-# Tệp tạm thời
-*.swp
-*.tmp
+# FastAPI / Uvicorn logs
+*.log
+
+# dotenv / secrets
+.env
+.env.*
+
+# MyPy
+.mypy_cache/
+
+# Pytest
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+.cache
+
+# PyInstaller
+*.spec
+dist/
+build/
+
+# Jupyter Notebooks (if used)
+.ipynb_checkpoints/
+
+# SQLite and other local databases
+*.sqlite3
+*.db
+
+# VS Code Python settings
+.vscode/settings.json
+.vscode/launch.json
