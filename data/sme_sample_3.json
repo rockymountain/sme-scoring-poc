@@ -1,0 +1,15 @@
+{
+  "company_name": "SME Company 3",
+  "tax_id": "0301234502",
+  "industry": "Sản xuất",
+  "founded_year": 2012,
+  "revenue": 5200000000,
+  "net_profit": 340000000,
+  "total_assets": 10400000000,
+  "charter_capital": 2200000000,
+  "collateral": "Không có",
+  "loan_purpose": "Đầu tư máy móc",
+  "years_borrowed": 2,
+  "repayment_history": "Nợ xấu",
+  "audited_financials": true
+}

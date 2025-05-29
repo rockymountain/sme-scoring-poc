@@ -1,0 +1,15 @@
+{
+  "company_name": "SME Company 8",
+  "tax_id": "0301234507",
+  "industry": "Sản xuất",
+  "founded_year": 2017,
+  "revenue": 5700000000,
+  "net_profit": 440000000,
+  "total_assets": 11400000000,
+  "charter_capital": 2700000000,
+  "collateral": "Xe tải",
+  "loan_purpose": "Lưu động",
+  "years_borrowed": 7,
+  "repayment_history": "Trễ hạn",
+  "audited_financials": false
+}

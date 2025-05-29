@@ -1,0 +1,15 @@
+{
+  "company_name": "SME Company 6",
+  "tax_id": "0301234505",
+  "industry": "Sản xuất",
+  "founded_year": 2015,
+  "revenue": 5500000000,
+  "net_profit": 400000000,
+  "total_assets": 11000000000,
+  "charter_capital": 2500000000,
+  "collateral": "Không có",
+  "loan_purpose": "Lưu động",
+  "years_borrowed": 5,
+  "repayment_history": "Nợ xấu",
+  "audited_financials": false
+}

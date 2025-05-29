@@ -1,0 +1,15 @@
+{
+  "company_name": "SME Company 7",
+  "tax_id": "0301234506",
+  "industry": "Sản xuất",
+  "founded_year": 2016,
+  "revenue": 5600000000,
+  "net_profit": 420000000,
+  "total_assets": 11200000000,
+  "charter_capital": 2600000000,
+  "collateral": "Bất động sản",
+  "loan_purpose": "Đầu tư máy móc",
+  "years_borrowed": 6,
+  "repayment_history": "Tốt",
+  "audited_financials": true
+}

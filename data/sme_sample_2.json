@@ -1,0 +1,15 @@
+{
+  "company_name": "SME Company 2",
+  "tax_id": "0301234501",
+  "industry": "Sản xuất",
+  "founded_year": 2011,
+  "revenue": 5100000000,
+  "net_profit": 320000000,
+  "total_assets": 10200000000,
+  "charter_capital": 2100000000,
+  "collateral": "Xe tải",
+  "loan_purpose": "Lưu động",
+  "years_borrowed": 1,
+  "repayment_history": "Trễ hạn",
+  "audited_financials": false
+}

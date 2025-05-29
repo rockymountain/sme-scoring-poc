@@ -1,0 +1,15 @@
+{
+  "company_name": "SME Company 1",
+  "tax_id": "0301234500",
+  "industry": "Sản xuất",
+  "founded_year": 2010,
+  "revenue": 5000000000,
+  "net_profit": 300000000,
+  "total_assets": 10000000000,
+  "charter_capital": 2000000000,
+  "collateral": "Bất động sản",
+  "loan_purpose": "Đầu tư máy móc",
+  "years_borrowed": 0,
+  "repayment_history": "Tốt",
+  "audited_financials": true
+}

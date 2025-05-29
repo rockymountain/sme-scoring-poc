@@ -1,0 +1,15 @@
+{
+  "company_name": "SME Company 5",
+  "tax_id": "0301234504",
+  "industry": "Sản xuất",
+  "founded_year": 2014,
+  "revenue": 5400000000,
+  "net_profit": 380000000,
+  "total_assets": 10800000000,
+  "charter_capital": 2400000000,
+  "collateral": "Xe tải",
+  "loan_purpose": "Đầu tư máy móc",
+  "years_borrowed": 4,
+  "repayment_history": "Trễ hạn",
+  "audited_financials": true
+}

@@ -1,0 +1,15 @@
+{
+  "company_name": "SME Company 4",
+  "tax_id": "0301234503",
+  "industry": "Sản xuất",
+  "founded_year": 2013,
+  "revenue": 5300000000,
+  "net_profit": 360000000,
+  "total_assets": 10600000000,
+  "charter_capital": 2300000000,
+  "collateral": "Bất động sản",
+  "loan_purpose": "Lưu động",
+  "years_borrowed": 3,
+  "repayment_history": "Tốt",
+  "audited_financials": false
+}

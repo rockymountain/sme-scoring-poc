@@ -1,62 +1,55 @@
-def compute_score(data: dict) -> dict:
-    score = 0
-    factors = []
+import json
+from pathlib import Path
 
-    # --- Tài chính (40 điểm) ---
-    if data["revenue"] > 10_000_000_000:
-        score += 10
-        factors.append("Doanh thu > 10 tỷ")
-    if data["net_profit"] > 0:
-        score += 10
-        factors.append("Lợi nhuận dương")
-    if data["net_profit"] / data["revenue"] > 0.1:
-        score += 5
-        factors.append("Biên lợi nhuận > 10%")
-    if data["total_assets"] > 10_000_000_000:
-        score += 5
-        factors.append("Tổng tài sản > 10 tỷ")
-    if data["charter_capital"] > 2_000_000_000:
-        score += 5
-        factors.append("Vốn điều lệ > 2 tỷ")
-    if data["audited_financials"]:
-        score += 5
-        factors.append("Có kiểm toán")
+# Load scoring rules from external JSON
+CONFIG_PATH = Path(__file__).resolve().parent.parent / "config" / "scoring_rules.json"
+with open(CONFIG_PATH, encoding="utf-8") as f:
+    RULES = json.load(f)
 
-    # --- Lịch sử tín dụng (30 điểm) ---
-    if data["years_borrowed"] > 0:
-        score += 10
-        factors.append("Từng vay ngân hàng")
-    if data["repayment_history"] == "Tốt":
-        score += 15
-        factors.append("Lịch sử trả nợ tốt")
-    elif data["repayment_history"] == "Trễ hạn":
-        score += 5
-        factors.append("Từng trễ hạn")
 
-    # --- Yếu tố hoạt động (30 điểm) ---
-    if 2025 - data["founded_year"] > 3:
-        score += 5
-        factors.append("Thành lập > 3 năm")
-    if data["collateral"] == "Bất động sản":
-        score += 10
-        factors.append("Tài sản đảm bảo là BĐS")
-    if data["loan_purpose"] == "Mở rộng mặt bằng":
-        score += 10
-        factors.append("Mục đích vay: mở rộng SXKD")
-    if data["industry"] not in ["Cầm đồ", "Crypto", "Đầu cơ"]:
-        score += 5
-        factors.append("Ngành nghề ít rủi ro")
+def normalize(value, base):
+    return min(value / base, 1.0)
 
-    if score >= 80:
-        risk = "Thấp"
-    elif score >= 60:
-        risk = "Trung bình"
+
+def score_sme(data):
+    weights = RULES["weights"]
+    norm = RULES["normalizer"]
+    history_scores = RULES["repayment_history_scores"]
+    audited_bonus = RULES["audited_bonus"]
+
+    components = {}
+
+    # Numeric fields
+    components["revenue"] = normalize(data["revenue"], norm["revenue"]) * 100
+    components["net_profit"] = normalize(data["net_profit"], norm["net_profit"]) * 100
+    components["total_assets"] = normalize(data["total_assets"], norm["total_assets"]) * 100
+    components["charter_capital"] = normalize(data["charter_capital"], norm["charter_capital"]) * 100
+
+    # Categorical fields
+    components["repayment_history"] = history_scores.get(data["repayment_history"], 0)
+    components["audited_financials"] = audited_bonus if data["audited_financials"] else 0
+
+    # Weighted sum
+    total_score = sum(components[k] * weights.get(k, 0) for k in components)
+
+    # Risk level logic
+    if total_score >= 90:
+        risk_level = "Thấp"
+    elif total_score >= 80:
+        risk_level = "Trung bình"
+    elif total_score >= 60:
+        risk_level = "Cao"
     else:
-        risk = "Cao"
+        risk_level = "Rất Cao"
+
+    # Key factors explanation
+    key_factors = [
+        f"{k.replace('_', ' ').capitalize()}: {components[k]:.1f} điểm (trọng số {weights.get(k, 0):.2f})"
+        for k in components
+    ]
 
     return {
-        "company_name": data["company_name"],
-        "score": score,
-        "risk_level": risk,
-        "key_factors": factors
+        "score": round(total_score, 1),
+        "risk_level": risk_level,
+        "key_factors": key_factors
     }

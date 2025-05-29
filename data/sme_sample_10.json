@@ -1,0 +1,15 @@
+{
+  "company_name": "SME Company 10",
+  "tax_id": "0301234509",
+  "industry": "Sản xuất",
+  "founded_year": 2019,
+  "revenue": 5900000000,
+  "net_profit": 480000000,
+  "total_assets": 11800000000,
+  "charter_capital": 2900000000,
+  "collateral": "Bất động sản",
+  "loan_purpose": "Lưu động",
+  "years_borrowed": 9,
+  "repayment_history": "Tốt",
+  "audited_financials": false
+}
