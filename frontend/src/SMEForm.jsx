@@ -1,8 +1,4 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent } from "./components/ui/card";
-import { Button } from "./components/ui/button";
-import { Input } from "./components/ui/input";
-import { Textarea } from "./components/ui/textarea";
 
 export default function SMEForm() {
   const [form, setForm] = useState({
@@ -76,69 +72,96 @@ export default function SMEForm() {
     setResult(data);
   };
 
+  const Field = ({ label, children }) => (
+    <div className="flex flex-col space-y-1">
+      <label className="text-sm font-medium text-gray-700 mb-1">{label}</label>
+      {children}
+    </div>
+  );
+
   return (
-    <div className="p-4 max-w-2xl mx-auto space-y-4">
-      <Card>
-        <CardContent className="space-y-2 py-4">
-          <Input type="file" accept="application/json" onChange={handleJsonFile} />
-          <Input name="company_name" placeholder="Tên doanh nghiệp" onChange={handleChange} value={form.company_name} />
-          <Input name="tax_id" placeholder="Mã số thuế" onChange={handleChange} value={form.tax_id} />
-          <Input name="industry" placeholder="Ngành nghề" onChange={handleChange} value={form.industry} />
-          <Input name="founded_year" placeholder="Năm thành lập" onChange={handleChange} value={form.founded_year} />
-          <Input name="revenue" placeholder="Doanh thu (VNĐ)" onChange={handleChange} value={form.revenue} />
-          <Input name="net_profit" placeholder="Lợi nhuận ròng (VNĐ)" onChange={handleChange} value={form.net_profit} />
-          <Input name="total_assets" placeholder="Tổng tài sản (VNĐ)" onChange={handleChange} value={form.total_assets} />
-          <Input name="charter_capital" placeholder="Vốn điều lệ (VNĐ)" onChange={handleChange} value={form.charter_capital} />
-          <select name="collateral" className="w-full p-2 rounded" onChange={handleChange} value={form.collateral}>
+    <div className="p-4 max-w-3xl mx-auto space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Field label="Tải file JSON">
+          <input type="file" accept="application/json" onChange={handleJsonFile} className="w-full border rounded px-2 py-1" />
+        </Field>
+        <Field label="Tên doanh nghiệp">
+          <input name="company_name" className="border rounded px-2 py-1" onChange={handleChange} value={form.company_name} />
+        </Field>
+        <Field label="Mã số thuế">
+          <input name="tax_id" className="border rounded px-2 py-1" onChange={handleChange} value={form.tax_id} />
+        </Field>
+        <Field label="Ngành nghề">
+          <input name="industry" className="border rounded px-2 py-1" onChange={handleChange} value={form.industry} />
+        </Field>
+        <Field label="Năm thành lập">
+          <input name="founded_year" className="border rounded px-2 py-1" onChange={handleChange} value={form.founded_year} />
+        </Field>
+        <Field label="Doanh thu (VNĐ)">
+          <input name="revenue" className="border rounded px-2 py-1" onChange={handleChange} value={form.revenue} />
+        </Field>
+        <Field label="Lợi nhuận ròng (VNĐ)">
+          <input name="net_profit" className="border rounded px-2 py-1" onChange={handleChange} value={form.net_profit} />
+        </Field>
+        <Field label="Tổng tài sản (VNĐ)">
+          <input name="total_assets" className="border rounded px-2 py-1" onChange={handleChange} value={form.total_assets} />
+        </Field>
+        <Field label="Vốn điều lệ (VNĐ)">
+          <input name="charter_capital" className="border rounded px-2 py-1" onChange={handleChange} value={form.charter_capital} />
+        </Field>
+        <Field label="Tài sản đảm bảo">
+          <select name="collateral" className="border rounded px-2 py-1" onChange={handleChange} value={form.collateral}>
             <option value="Bất động sản">Bất động sản</option>
             <option value="Xe tải">Xe tải</option>
             <option value="Không có">Không có</option>
           </select>
-          <select name="loan_purpose" className="w-full p-2 rounded" onChange={handleChange} value={form.loan_purpose}>
+        </Field>
+        <Field label="Mục đích vay">
+          <select name="loan_purpose" className="border rounded px-2 py-1" onChange={handleChange} value={form.loan_purpose}>
             <option value="Lưu động">Lưu động</option>
             <option value="Đầu tư máy móc">Đầu tư máy móc</option>
             <option value="Mở rộng mặt bằng">Mở rộng mặt bằng</option>
             <option value="Khác">Khác</option>
           </select>
-          <Input name="years_borrowed" placeholder="Số năm từng vay" onChange={handleChange} value={form.years_borrowed} />
-          <select name="repayment_history" className="w-full p-2 rounded" onChange={handleChange} value={form.repayment_history}>
+        </Field>
+        <Field label="Số năm từng vay">
+          <input name="years_borrowed" className="border rounded px-2 py-1" onChange={handleChange} value={form.years_borrowed} />
+        </Field>
+        <Field label="Lịch sử trả nợ">
+          <select name="repayment_history" className="border rounded px-2 py-1" onChange={handleChange} value={form.repayment_history}>
             <option value="Tốt">Tốt</option>
             <option value="Trễ hạn">Trễ hạn</option>
             <option value="Nợ xấu">Nợ xấu</option>
           </select>
-          <label className="flex items-center space-x-2">
-            <input type="checkbox" name="audited_financials" checked={form.audited_financials} onChange={handleChange} />
-            <span>Có kiểm toán</span>
-          </label>
-          <Button onClick={handleSubmit}>Chấm điểm</Button>
-        </CardContent>
-      </Card>
+        </Field>
+        <Field label="Có kiểm toán">
+          <input type="checkbox" name="audited_financials" checked={form.audited_financials} onChange={handleChange} />
+        </Field>
+      </div>
+      <button onClick={handleSubmit} className="px-4 py-2 bg-blue-600 text-white rounded">Chấm điểm</button>
 
       {jsonPreview && (
-        <Card>
-          <CardContent className="space-y-2 py-4">
-            <strong>Xem trước JSON:</strong>
-            <Textarea className="w-full h-64 font-mono" value={jsonPreview} onChange={(e) => setJsonPreview(e.target.value)} />
-            <Button onClick={applyJsonEdits}>Áp dụng chỉnh sửa</Button>
-          </CardContent>
-        </Card>
+        <div className="space-y-2">
+          <strong>Xem trước JSON:</strong>
+          <textarea className="w-full h-64 font-mono p-2 border rounded" value={jsonPreview} onChange={(e) => setJsonPreview(e.target.value)} />
+          <button onClick={applyJsonEdits} className="px-3 py-1 bg-gray-700 text-white rounded">Áp dụng chỉnh sửa</button>
+        </div>
       )}
 
       {result && (
-        <Card>
-          <CardContent className="space-y-2 py-4">
-            <p><strong>Điểm tín dụng:</strong> {result.score}</p>
-            <p><strong>Phân loại rủi ro:</strong> {result.risk_level}</p>
-            <div>
-              <strong>Yếu tố ảnh hưởng:</strong>
-              <ul className="list-disc pl-5">
-                {result.key_factors.map((f, i) => (
-                  <li key={i}>{f}</li>
-                ))}
-              </ul>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="p-4 bg-green-100 rounded shadow">
+          <p className="text-lg font-bold">✅ Kết quả đánh giá tín dụng:</p>
+          <p><strong>Điểm tín dụng:</strong> {result.score}</p>
+          <p><strong>Phân loại rủi ro:</strong> {result.risk_level}</p>
+          <div>
+            <strong>Yếu tố ảnh hưởng:</strong>
+            <ul className="list-disc pl-5">
+              {result.key_factors.map((f, i) => (
+                <li key={i}>{f}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       )}
     </div>
   );

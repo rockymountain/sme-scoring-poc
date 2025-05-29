@@ -1,0 +1,22 @@
+{
+  "weights": {
+    "revenue": 0.25,
+    "net_profit": 0.25,
+    "total_assets": 0.2,
+    "charter_capital": 0.1,
+    "repayment_history": 0.1,
+    "audited_financials": 0.1
+  },
+  "repayment_history_scores": {
+    "Tốt": 100,
+    "Trễ hạn": 50,
+    "Nợ xấu": 0
+  },
+  "audited_bonus": 10,
+  "normalizer": {
+    "revenue": 1000000000,
+    "net_profit": 100000000,
+    "total_assets": 2000000000,
+    "charter_capital": 1000000000
+  }
+}
