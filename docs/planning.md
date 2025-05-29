@@ -154,3 +154,84 @@ Chia theo 3 nhóm: **Thông tin pháp lý**, **Thông tin tài chính**, và **T
 
 ---
 
+---
+
+### 🎯 **MỤC TIÊU CHÍNH CỦA POC SME SCORING**
+
+> Chứng minh rằng một module AI có thể **nhanh chóng**, **hiệu quả**, và **dễ tích hợp** vào hệ thống BVBank để hỗ trợ ra quyết định tín dụng SME.
+
+---
+
+## ✅ BƯỚC TIẾP THEO: HOÀN THIỆN & CHỨNG MINH GIÁ TRỊ
+
+### 1. 🔍 **Tối ưu logic chấm điểm PoC** (trái tim của hệ thống)
+
+**Hiện trạng:** Bạn đang có một rule-based model hoặc scorecard đơn giản.
+
+**Đề xuất:**
+
+* Thêm các **trọng số cho từng trường thông tin** và cho phép dễ cấu hình qua file JSON.
+* Áp dụng 1 số rule gợi ý, ví dụ:
+
+  * `revenue` < 500tr → trừ điểm
+  * `repayment_history = Nợ xấu` → điểm tối thiểu
+  * `audited_financials = true` → cộng điểm
+* **Giải thích điểm số (Explainability):** Nên có hàm `explain_score(input)` xuất ra key\_factors chi tiết hơn (đã có trong output schema).
+
+---
+
+### 2. 🔗 **Chuẩn hóa tích hợp hệ thống**
+
+**Hiện trạng:** Backend FastAPI đang chạy cục bộ.
+
+**Đề xuất:**
+
+* Thêm `CORS middleware` (bạn đã xử lý).
+* Xác định **các API chuẩn hóa**:
+
+  * `POST /score` –> Đã có.
+  * (Tùy chọn): `GET /score-logic` – Xuất rule hiện tại (giúp BVBank dễ review).
+* Cân nhắc thêm Swagger UI (`/docs`) để BVBank dễ test.
+
+---
+
+### 3. 🧪 **Chuẩn bị test case thực tế để trình diễn**
+
+**Hiện trạng:** Chưa có SME mẫu.
+
+**Đề xuất:**
+
+* Tạo **3-5 hồ sơ SME mẫu**, từ tốt đến rủi ro cao, lưu ở dạng `.json`, ví dụ:
+
+  * SME tốt: có kiểm toán, trả đúng hạn, tài sản mạnh.
+  * SME trung bình: lợi nhuận thấp, không có tài sản thế chấp.
+  * SME yếu: nợ xấu, không kiểm toán.
+
+→ Dùng những file này để trình diễn quy trình chấm điểm.
+
+---
+
+## 💼 (Tuỳ chọn) Trình diễn có giao diện
+
+**Nếu có thời gian quay lại frontend:**
+
+* Làm giao diện có sẵn nút chọn các JSON mẫu.
+* Upload JSON → Hiện điểm & giải thích.
+
+---
+
+## 📦 Cuối cùng: Đóng gói PoC
+
+**Kết quả mong muốn:** Một repo gọn gàng có:
+
+* `backend/` – FastAPI + Logic
+* `schemas/` – `schema_input.json`, `schema_output.json`, các file SME mẫu
+* (Tuỳ chọn) `frontend/` – UI đơn giản
+* `README.md`:
+
+  * Giới thiệu PoC
+  * Hướng dẫn chạy nhanh
+  * Ảnh minh hoạ giao diện + kết quả
+  * Cấu trúc thư mục
+
+---
