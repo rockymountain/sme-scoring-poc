@@ -1,0 +1,46 @@
+# Python __pycache__ và các file biên dịch
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Thư mục môi trường ảo (tuỳ bạn đặt tên gì)
+venv/
+.env/
+.env.bak/
+.venv/
+
+# Log và tệp debug
+*.log
+*.pid
+*.sqlite3
+
+# Tệp cấu hình máy local
+*.db
+*.db-journal
+*.sqlite
+
+# VSCode / IDE settings
+.vscode/
+.idea/
+
+# Uvicorn logs (nếu bạn ghi log ra file)
+uvicorn*.log
+
+# Jupyter notebook checkpoints (nếu có dùng)
+.ipynb_checkpoints/
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dll
+*.dylib
+
+# Các file từ hệ điều hành
+.DS_Store
+Thumbs.db
+
+# pyproject.toml / poetry (nếu bạn dùng)
+poetry.lock
+
+# Tệp tạm thời
+*.swp
+*.tmp
